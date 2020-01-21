@@ -1,10 +1,10 @@
- <h1> Angular </h1>
+ <!--<h1> Angular </h1>
  <courses></courses>
 
- <favourite [is-fav]="post.isFavourite" (change)=onFavouriteChanged($event)></favourite> <!--should use alias, 
-    but need to update favourite component html as it will not update automatically, need to change manually-->
+ <favourite [is-fav]="post.isFavourite" (change)=onFavouriteChanged($event)></favourite>  should use alias, 
+    but need to update favourite component html as it will not update automatically, need to change manually
 
- <!-- can't directly use property binding here
+  can't directly use property binding here
     in angular, to do property binding, we need to define that field/property as
     an Input property and to add support for event binding, we need Output Property
     Input and Output properties make a component more reusable
@@ -13,6 +13,43 @@
 
     Input and output properties together make the public API for that component 
     
- <favourite [is-favourite]="post.isFavourite" (change)="onFavouriteChanged()"></favourite>-->
+ <favourite [is-favourite]="post.isFavourite" (change)="onFavouriteChanged()"></favourite>
 
- <bootstrap-panel></bootstrap-panel> 
+<bootstrap-panel>
+     <ng-container class="heading">This is the heading</ng-container>
+    <div class="body">
+        <h1>This is the body</h1>
+        <p>This is in the body...</p>
+    </div>
+</bootstrap-panel> -->
+
+<div *ngIf="courses.length>0; then coursesList else noCourses" ></div>
+
+<ng-template #coursesList>
+  Showing the list of courses
+</ng-template>
+
+<ng-template #noCourses>
+  No courses yet
+</ng-template>
+
+<ul class="nav nav-pills">
+  <li class="nav-item"><a class="nav-link" [class.active]="viewmode=='map'" (click)="viewmode='map'" >Map</a></li>
+  <li class="nav-item"><a class="nav-link" [class.active]="viewmode=='list'" (click)="viewmode='list'" >List</a></li>
+</ul>
+
+<div [ngSwitch]="viewmode">
+  <div *ngSwitchCase="'map'"> Map View Content</div>
+  <div *ngSwitchCase="'list'"> List View Content</div>
+  <div *ngSwitchDefault> Default View Content</div>
+</div>
+
+<button (click)="loadCourses()">Load Courses</button>
+<button (click)="onAdd()">Add Course</button>
+<ul>
+  <li *ngFor="let course of courses; even as isEven, trackBy: trackCourse">
+    {{course.name}} <span *ngIf="isEven">even row</span>
+    <button (click)="onRemove(course)">Remove Course</button>
+  </li>
+</ul>
+
