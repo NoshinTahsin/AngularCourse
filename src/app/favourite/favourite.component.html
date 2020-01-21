@@ -1,0 +1,16 @@
+<p>favourite works!</p>
+
+
+ <button [style.backgroundColor]="isFavourite? 'blue':'red'" (click)="onClick($event)" >Save2</button>
+<br>
+ <button type="button" class="btn btn-primary">Primary</button>
+<i class="fa fa-plus"></i>
+<div>
+    <span
+    class="glyphicon glyphicon-star"
+    
+    (click)="onClick()"
+></span>
+<!-- [ngClass]="{'glyphicon-star': isFavourite, 'glyphicon-star-empty': !isFavourite}" -->
+    
+</div>

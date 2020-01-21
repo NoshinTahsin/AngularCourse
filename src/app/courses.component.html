@@ -1,0 +1,38 @@
+<h2> {{getTitle()}} </h2>
+       
+        <ul>
+            <li *ngFor="let course of courses">
+                {{course}}
+            </li>
+        </ul>
+
+        <div>
+        //class binding
+        <button class="btn btn-primary" [class.active]="isActive">Save</button>
+        </div>
+
+        <div>
+        //style binding
+        <button [style.backgroundColor]="isActive? 'blue':'red'">Save</button>
+        </div>
+
+        <div (click)="onDivClick()">
+        //event binding
+        <button (click)="onSave($event)">Save</button>
+        </div>
+
+        <input #email (keyup.enter) = "onKeyUp(email.value)"/>
+        <input [value]="email2" (keyup.enter) = "email2 = $event.target.value; onKeyUp2( )"/>
+        <input [(ngModel)]="email2" (keyup.enter) = "email2 = $event.target.value; onKeyUp2( )"/>
+        
+        <br/>
+        {{ course.name | uppercase }} <br/>
+        {{ course.rating | number:'1.2-2'}} <br/>
+        {{ course.students | number }} <br/>
+        {{ course.price }} <br/>
+        {{ course.release_date | date: 'shortDate'}} <br/>
+
+        {{ longText | summary:10}}
+
+       
+       
