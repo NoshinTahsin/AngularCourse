@@ -1,3 +1,18 @@
  <h1> Angular </h1>
  <courses></courses>
- <favourite [is-favourite]="post.isFavourite" (click)="onFavouriteChanged($event)"></favourite>
+
+ <favourite [is-fav]="post.isFavourite" (change)=onFavouriteChanged($event)></favourite> <!--should use alias, 
+    but need to update favourite component html as it will not update automatically, need to change manually-->
+
+ <!-- can't directly use property binding here
+    in angular, to do property binding, we need to define that field/property as
+    an Input property and to add support for event binding, we need Output Property
+    Input and Output properties make a component more reusable
+    Using Input properties, we pass a state or event to a component
+    and we use output propertier to raise event from the custom components
+
+    Input and output properties together make the public API for that component 
+    
+ <favourite [is-favourite]="post.isFavourite" (change)="onFavouriteChanged()"></favourite>-->
+
+ <bootstrap-panel></bootstrap-panel> 

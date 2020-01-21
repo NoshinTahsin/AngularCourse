@@ -1,9 +1,13 @@
 <p>favourite works!</p>
+<button type="button" class="btn btn-primary"
+[ngClass]="{'btn-primary': isFavourite, 'btn-secondary': !isFavourite}" (click)="onClick()"
+>Primary</button>
 
-
- <button [style.backgroundColor]="isFavourite? 'blue':'red'" (click)="onClick($event)" >Save2</button>
+ <!--<button [style.backgroundColor]="isFavourite? 'blue':'red'" (click)="onClick($event)" >Save2</button>
 <br>
- <button type="button" class="btn btn-primary">Primary</button>
+
+ 
+
 <i class="fa fa-plus"></i>
 <div>
     <span
@@ -11,6 +15,7 @@
     
     (click)="onClick()"
 ></span>
-<!-- [ngClass]="{'glyphicon-star': isFavourite, 'glyphicon-star-empty': !isFavourite}" -->
+  [ngClass]="{'glyphicon-star': isFavourite, 'glyphicon-star-empty': !isFavourite}" 
     
 </div>
+-->
