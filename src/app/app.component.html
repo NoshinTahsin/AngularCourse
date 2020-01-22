@@ -21,7 +21,7 @@
         <h1>This is the body</h1>
         <p>This is in the body...</p>
     </div>
-</bootstrap-panel> -->
+</bootstrap-panel> 
 
 <div *ngIf="courses.length>0; then coursesList else noCourses" ></div>
 
@@ -52,4 +52,8 @@
     <button (click)="onRemove(course)">Remove Course</button>
   </li>
 </ul>
+
+<input type="text" appInputFormat format="'lowercase'">-->
+
+<contact-form></contact-form>
 
