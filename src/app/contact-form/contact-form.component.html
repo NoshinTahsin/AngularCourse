@@ -1,37 +1,40 @@
 <p>contact-form works!</p>
 
-<form>
-    <div class="form-group">
-        <label for="firstName">FirstName</label>
-        <input 
-            required 
-            minlength="3" 
-            maxlength="6" 
-            pattern="Noshin" 
-            ngModel 
-            name="firstName" 
-            #firstName="ngModel" 
-            (change)="log(firstName)" 
-            id="firstName" 
-            type="text" 
-            class="form-control">
-
-        <div 
-            class="alert alert-danger" 
-            *ngIf="firstName.touched &&!firstName.valid">
-
-            <div *ngIf="firstName.errors.required">
-                Firstname is required
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact" #contact="ngModelGroup">
+        <div class="form-group">
+            <label for="firstName">FirstName</label>
+            <input 
+                required 
+                minlength="3" 
+                maxlength="6" 
+                pattern="Noshin" 
+                ngModel 
+                name="firstName" 
+                #firstName="ngModel" 
+                (change)="log(firstName)" 
+                id="firstName" 
+                type="text" 
+                class="form-control">
+    
+            <div 
+                class="alert alert-danger" 
+                *ngIf="firstName.touched &&!firstName.valid">
+    
+                <div *ngIf="firstName.errors.required">
+                    Firstname is required
+                </div>
+                <div *ngIf="firstName.errors.minlength">
+                    Firstname should be at least {{firstName.errors.minlength.requiredLength}} characters
+                </div>
+                <div *ngIf="firstName.errors.pattern">
+                    Pattern doesn't match
+                </div>
+    
             </div>
-            <div *ngIf="firstName.errors.minlength">
-                Firstname should be at least {{firstName.errors.minlength.requiredLength}} characters
-            </div>
-            <div *ngIf="firstName.errors.pattern">
-                Pattern doesn't match
-            </div>
-
         </div>
     </div>
+    
 
     <div class="form-group">
         <label for="comment">Comment</label>
@@ -44,5 +47,32 @@
             class="form-control">
         </textarea>
     </div>
-    <button class="btn btn-primary">Submit</button>
+
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ngModel name="isSubscribed"> Subscribed
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="contactMethod">
+            Contact Method
+        </label>
+        <select multiple ngModel name="contactMethod" id="contactMethod" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let methods of contactMethods" [ngValue]="methods">{{methods.name}}</option>
+        </select>
+    </div>
+
+    <div *ngFor="let methods of contactMethods" class="radio">
+        <label for="">
+            <input ngModel type="radio" name="contactMethod" [value]="methods.id">
+            {{methods.name}}
+        </label>
+    </div>  
+
+    <p>
+        {{f.value | json}}
+    </p>
+    <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 </form>
